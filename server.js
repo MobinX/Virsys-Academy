@@ -52,9 +52,9 @@ async function createServer(
       let template, render
       if (!isProd) {
         // always read fresh template in dev
-        template = fs.readFileSync(resolve('index.html'), 'utf-8')
+        template = fs.readFileSync(resolve('/client/index.html'), 'utf-8')
         template = await vite.transformIndexHtml(url, template)
-        render = (await vite.ssrLoadModule('/src/entry-server.jsx')).render
+        render = (await vite.ssrLoadModule('/client/src/entry-server.jsx')).render
       } else {
         template = indexProd
         render = require('./dist/server/entry-server.js').render
