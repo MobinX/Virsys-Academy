@@ -1,6 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const express = require('express')
+const mongoose = require('mongoose');
 
 const isTest = process.env.NODE_ENV === 'test' || !!process.env.VITE_TEST_BUILD
 
@@ -16,6 +17,16 @@ async function createServer(
     : ''
 
   const app = express()
+  
+
+  const mongoDB = 'mongodb://127.0.0.1/my_database';
+  mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+  
+  const db = mongoose.connection;
+  
+  //Bind connection to error event (to get notification of connection errors)
+  db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
 
   /**
    * @type {import('vite').ViteDevServer}
@@ -58,7 +69,7 @@ async function createServer(
         template = fs.readFileSync(resolve('index.html'), 'utf-8')
         template = await vite.transformIndexHtml(url, template)
         render = (await vite.ssrLoadModule('./client/src/entry-server.jsx')).render
-        
+
       } else {
         template = indexProd
         render = require('./dist/server/entry-server.js').render
