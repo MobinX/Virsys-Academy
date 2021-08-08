@@ -2,7 +2,7 @@ import { Link, Route, Switch } from 'react-router-dom'
 
 // Auto generates routes from files under ./pages
 // https://vitejs.dev/guide/features.html#glob-import
-import { Link, Route, Switch } from 'react-router-dom'
+
 
 // Auto generates routes from files under ./pages
 // https://vitejs.dev/guide/features.html#glob-import
