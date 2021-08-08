@@ -46,6 +46,8 @@ async function createServer(
     )
   }
 
+  await require('./routes/index')(app);
+
   app.use('*', async (req, res) => {
     try {
       const url = req.originalUrl
@@ -56,6 +58,7 @@ async function createServer(
         template = fs.readFileSync(resolve('index.html'), 'utf-8')
         template = await vite.transformIndexHtml(url, template)
         render = (await vite.ssrLoadModule('./client/src/entry-server.jsx')).render
+        
       } else {
         template = indexProd
         render = require('./dist/server/entry-server.js').render
@@ -82,13 +85,12 @@ async function createServer(
   return { app, vite }
 }
 
-if (!isTest) {
-  createServer().then(({ app }) =>
-    app.listen(3000, () => {
-      console.log('http://localhost:3000')
-    })
-  )
-}
+
+createServer().then(({ app }) =>
+  app.listen(3000, () => {
+    console.log('http://localhost:3000')
+  }))
+
 
 // for test use
 exports.createServer = createServer
