@@ -16,6 +16,7 @@ import { Link, Route, Switch } from 'react-router-dom'
 //     component: pages[path].default
 //   }
 // })
+import React from "react"
 
 
 
