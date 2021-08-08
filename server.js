@@ -9,6 +9,7 @@ async function createServer(
   root = process.cwd(),
   isProd = process.env.NODE_ENV === 'production'
 ) {
+  
   const resolve = (p) => path.resolve(__dirname, p)
 
   const indexProd = isProd
