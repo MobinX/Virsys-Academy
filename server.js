@@ -2,6 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const express = require('express')
 
+
 const isTest = process.env.NODE_ENV === 'test' || !!process.env.VITE_TEST_BUILD
 
 async function createServer(
@@ -54,7 +55,7 @@ async function createServer(
         // always read fresh template in dev
         template = fs.readFileSync(resolve('index.html'), 'utf-8')
         template = await vite.transformIndexHtml(url, template)
-        render = (await vite.ssrLoadModule('client/src/entry-server.jsx')).render
+        render = (await vite.ssrLoadModule('./client/src/entry-server.jsx')).render
       } else {
         template = indexProd
         render = require('./dist/server/entry-server.js').render
