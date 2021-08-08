@@ -3,11 +3,11 @@
   "private": true,
   "version": "0.0.1",
   "scripts": {
-     //"dev": "node server",
+     "dev-b": "node server",
     "build": "yarn build:client && yarn build:server",
     "build:client": "vite build --outDir dist/client",
     "build:server": "vite build --ssr client/src/entry-server.jsx --outDir dist/server",
-     //"serve": "cross-env NODE_ENV=production node server",
+     "s": "cross-env NODE_ENV=production node server",
     "serve":"node server",
     "debug": "node --inspect-brk server"
   },
