@@ -1,4 +1,4 @@
 module.exports = {
 	'secret' : 'Lbn2UK545BUkUTCJvw2rtklKLNlL4nl11',
-	'database' : 'mongodb://127.0.0.1:27017'
+	'database' : 'mongodb+srv://local:local@cluster0.aqttc.mongodb.net/versys-academy?'
 }
