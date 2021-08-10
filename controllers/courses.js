@@ -15,7 +15,7 @@ exports.addCourse = (req,res) => {
 
 }
 
-exports.updateCourse = (req,res) => {
+exports.updateCourse = (req,res) => { 
 
 }
 
