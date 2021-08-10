@@ -2,58 +2,48 @@ const courseModel = require("../models/course");
 const contentModel = require("../models/content");
 const userModel = require("../models/user");
 
-exports.getcourseList = (req,res) => {
+exports.getCourseList = (req,res) => {
 
 }
 
-exports.getcoursebyid = (req,res) => {
-
-}
-
-
-exports.add = (req,res) => {
-
-}
-
-exports.courseList = (req,res) => {
-
-}
-
-exports.courseList = (req,res) => {
-
-}
-
-exports.courseList = (req,res) => {
-
-}
-
-exports.courseList = (req,res) => {
-
-}
-
-exports.courseList = (req,res) => {
-
-}
-
-exports.courseList = (req,res) => {
-
-}
-
-exports.courseList = (req,res) => {
-
-}
-
-exports.courseList = (req,res) => {
-
-}
-
-exports.courseList = (req,res) => {
-
-}
-
-exports.courseList = (req,res) => {
+exports.getCourseByid = (req,res) => {
 
 }
 
 
+exports.addCourse = (req,res) => {
+
+}
+
+exports.updateCourse = (req,res) => {
+
+}
+
+exports.DeleteCourse = (req,res) => {
+
+}
+
+exports.DeleteManyCourses = (req,res) => {
+
+}
+
+exports.updateManyCourses = (req,res) => {
+
+}
+
+exports.addContent = (req,res) => {
+
+}
+
+exports.getContent = (req,res) => {
+
+}
+
+exports.updateContent = (req,res) => {
+
+}
+
+exports.deleteContent = (req,res) => {
+
+}
 
