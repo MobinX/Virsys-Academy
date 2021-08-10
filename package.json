@@ -12,6 +12,7 @@
     "debug": "node --inspect-brk server"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.6.1",
     "body-parser": "^1.19.0",
     "mongoose": "^5.13.5",
     "react": "^17.0.1",

@@ -5,6 +5,7 @@ const courseModelSchema = new Schema({
     name:String,
     price:Number,
     description:String,
+    content:[{type:Schema.Types.ObjectId,ref:"contentModel"}],
     enrolledby:[{
         user:{type:Schema.Types.ObjectId,ref:"userModel"},
         date:{
