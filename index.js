@@ -1,6 +1,6 @@
-const fs = require('fs')
-const path = require('path')
-const express = require('express')
+// const fs = require('fs')
+// const path = require('path')
+// const express = require('express')
 // const mongoose = require('mongoose');
 // const cors = require("cors")
 // const bodyParser = require('body-parser')
@@ -11,18 +11,18 @@ const express = require('express')
 
 // const isTest = process.env.NODE_ENV === 'test' || !!process.env.VITE_TEST_BUILD
 
-async function createServer(
-//   root = process.cwd(),
-//   isProd = process.env.NODE_ENV === 'production'
-// ) {
+// async function createServer(
+// //   root = process.cwd(),
+// //   isProd = process.env.NODE_ENV === 'production'
+// // ) {
 
-//   const resolve = (p) => path.resolve(__dirname, p)
+// //   const resolve = (p) => path.resolve(__dirname, p)
 
-//   const indexProd = isProd
-//     ? fs.readFileSync(resolve('dist/client/index.html'), 'utf-8')
-//     : ''
+// //   const indexProd = isProd
+// //     ? fs.readFileSync(resolve('dist/client/index.html'), 'utf-8')
+// //     : ''
 
-  const app = express()
+//   const app = express()
   
 
 //   var config = require('./configs/' + 'dev' + '.config')
@@ -104,25 +104,41 @@ async function createServer(
 //     }
 //   })
     
-    app.use('*', async (req, res) => {
-      res.send("hello");
-    })
+//     app.use('*', async (req, res) => {
+//       res.send("hello");
+//     })
 
-  return { app, {} }
-}
-
-
-createServer().then(({ app }) =>
-  const port = process.env.PORT || 3000;                  
-  app.listen(port, () => {
-    console.log('http://localhost:3000')
-
-  }))
-
-console.log("runing server");
+//   return { app, {} }
+// }
 
 
-// for test use
-exports.createServer = createServer
+// createServer().then(({ app }) =>
+//   const port = process.env.PORT || 3000;                  
+//   app.listen(port, () => {
+//     console.log('http://localhost:3000')
+
+//   }))
+
+// console.log("runing server");
+
+
+// // for test use
+// exports.createServer = createServer
+
+const express = require('express');
+
+const app = express();
+
+app.get('/', (req, res) => res.send('Home Page Route'));
+
+app.get('/about', (req, res) => res.send('About Page Route'));
+
+app.get('/portfolio', (req, res) => res.send('Portfolio Page Route'));
+
+app.get('/contact', (req, res) => res.send('Contact Page Route'));
+
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => console.log(`Server running on ${port}, http://localhost:${port}`));
 
 
