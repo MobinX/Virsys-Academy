@@ -6,7 +6,7 @@ const {ObjectId} = require("mongodb")
 exports.getCourseList = async (req,res) => {
 
     try{
-        const courses = await courseModel.find({}).populate("enrolledby.user").populate("publishedby").exec((err,obj)=>{
+        const courses = await courseModel.find({}).exec((err,obj)=>{
             res.send(JSON.stringify(obj))
         })
         
