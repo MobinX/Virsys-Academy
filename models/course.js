@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const contentModel = require("../models/content");
+const userModel = require("../models/user");
+
 
 const courseModelSchema = new Schema({
     name:String,
@@ -29,5 +32,5 @@ const courseModelSchema = new Schema({
     publishedby:{type:Schema.Types.ObjectId,ref:"userModel"},
     status:String,
 });
-module.exports = mongoose.model('courseModel',courseModelSchema);
+    module.exports = mongoose.model('courseModel',courseModelSchema);
 
