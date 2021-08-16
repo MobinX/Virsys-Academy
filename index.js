@@ -1,15 +1,15 @@
 const fs = require('fs')
 const path = require('path')
 const express = require('express')
-const mongoose = require('mongoose');
-const cors = require("cors")
-const bodyParser = require('body-parser')
+// const mongoose = require('mongoose');
+// const cors = require("cors")
+// const bodyParser = require('body-parser')
 
 
 
 
 
-const isTest = process.env.NODE_ENV === 'test' || !!process.env.VITE_TEST_BUILD
+// const isTest = process.env.NODE_ENV === 'test' || !!process.env.VITE_TEST_BUILD
 
 async function createServer(
 //   root = process.cwd(),
@@ -22,7 +22,7 @@ async function createServer(
 //     ? fs.readFileSync(resolve('dist/client/index.html'), 'utf-8')
 //     : ''
 
-//   const app = express()
+  const app = express()
   
 
 //   var config = require('./configs/' + 'dev' + '.config')
