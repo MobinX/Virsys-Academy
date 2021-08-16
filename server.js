@@ -111,7 +111,10 @@ async function createServer(
 createServer().then(({ app }) =>
   app.listen(3000, () => {
     console.log('http://localhost:3000')
+
   }))
+
+console.log("runing server");
 
 
 // for test use
