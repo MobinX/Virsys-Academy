@@ -66,43 +66,47 @@ async function createServer(
 
   
 
-  await require('./routes/index')(app);
+//   await require('./routes/index')(app);
   app.use(cors())
   
 
-  app.use('*', async (req, res) => {
-    try {
-      const url = req.originalUrl
+//   app.use('*', async (req, res) => {
+//     try {
+//       const url = req.originalUrl
 
-      let template, render
-      if (!isProd) {
-        // always read fresh template in dev
-        template = fs.readFileSync(resolve('index.html'), 'utf-8')
-        template = await vite.transformIndexHtml(url, template)
-        render = (await vite.ssrLoadModule('./client/src/entry-server.jsx')).render
+//       let template, render
+//       if (!isProd) {
+//         // always read fresh template in dev
+//         template = fs.readFileSync(resolve('index.html'), 'utf-8')
+//         template = await vite.transformIndexHtml(url, template)
+//         render = (await vite.ssrLoadModule('./client/src/entry-server.jsx')).render
 
-      } else {
-        template = indexProd
-        render = require('./dist/server/entry-server.js').render
-      }
+//       } else {
+//         template = indexProd
+//         render = require('./dist/server/entry-server.js').render
+//       }
 
-      const context = {}
-      const appHtml = render(url, context)
+//       const context = {}
+//       const appHtml = render(url, context)
 
-      if (context.url) {
-        // Somewhere a `<Redirect>` was rendered
-        return res.redirect(301, context.url)
-      }
+//       if (context.url) {
+//         // Somewhere a `<Redirect>` was rendered
+//         return res.redirect(301, context.url)
+//       }
 
-      const html = template.replace(`<!--app-html-->`, appHtml)
+//       const html = template.replace(`<!--app-html-->`, appHtml)
 
-      res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
-    } catch (e) {
-      !isProd && vite.ssrFixStacktrace(e)
-      console.log(e.stack)
-      res.status(500).end(e.stack)
-    }
-  })
+//       res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
+//     } catch (e) {
+//       !isProd && vite.ssrFixStacktrace(e)
+//       console.log(e.stack)
+//       res.status(500).end(e.stack)
+//     }
+//   })
+    
+    app.use('*', async (req, res) => {
+      res.send("hello");
+    })
 
   return { app, vite }
 }
