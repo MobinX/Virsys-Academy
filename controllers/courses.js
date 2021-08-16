@@ -1,49 +1,121 @@
 const courseModel = require("../models/course");
 const contentModel = require("../models/content");
 const userModel = require("../models/user");
+const {ObjectId} = require("mongodb")
 
-exports.getCourseList = (req,res) => {
+exports.getCourseList = async (req,res) => {
+
+    try{
+        const courses = await courseModel.find({}).exec((err,obj)=>{
+            res.send(JSON.stringify(obj))
+        })
+        
+    }                
+    catch(e){
+        res.status(500).send(e);
+    }
+}
+
+exports.getCourseById = async (req,res) =>{
+    try{
+        const courses = await courseModel.findById(req.params.id)
+        res.send(JSON.stringify(courses))
+    }
+    catch(e){
+        res.status(500).send(e);
+    }
+}
+
+
+exports.addCourse = async (req,res) => {
+    
+   
+    const course = new courseModel(req.body);
+
+    
+    try{
+        await course.save();
+        res.send(JSON.stringify(course))
+    }
+    catch(e){
+        res.status(500).send(e);
+    }
 
 }
 
-exports.getCourseByid = (req,res) => {
+exports.updateCourse = async (req,res) => { 
+    try{
+        await courseModel.findByIdAndUpdate(req.params.id,req.body)
+        await courseModel.save()     
+    }
+    catch(e){
+        res.status(500).send(e);
+    }
 
 }
 
-
-exports.addCourse = (req,res) => {
-
-}
-
-exports.updateCourse = (req,res) => { 
-
-}
-
-exports.DeleteCourse = (req,res) => {
+exports.deleteCourse = async (req,res) => {
+    try{
+        const course = courseModel.findByIdAndDelete(req.params.id)
+        if(!course) res.status(404).send("Not Found")
+    }
+    catch(e){
+        res.status(500).send(e);
+    }
 
 }
 
-exports.DeleteManyCourses = (req,res) => {
+exports.DeleteManyCourses = async (req,res) => {
 
 }
 
-exports.updateManyCourses = (req,res) => {
+exports.updateManyCourses = async (req,res) => {
 
 }
 
-exports.addContent = (req,res) => {
+exports.addContent = async (req,res) => {
+
+    const content = new contentModel(req.body);
+    try{
+        await content.save();
+        res.send(JSON.stringify(content))
+    }
+    catch(e){
+        res.status(500).send(e);
+    }
 
 }
 
-exports.getContent = (req,res) => {
+exports.getContents = async (req,res) => {
+    try{
+        const contents = await contentModel.find({})
+        res.send(JSON.stringify(contents));
+    }
+    catch(e){
+        res.status(500).send(e)
+    }
+}
+
+exports.updateContent = async (req,res) => {
+
+    try{
+        await contentModel.findByIdAndUpdate(req.params.id,req.body)
+        await contentModel.save()     
+    }
+    catch(e){
+        res.status(500).send(e);
+    }
 
 }
 
-exports.updateContent = (req,res) => {
+exports.deleteContent = async (req,res) => {
 
-}
-
-exports.deleteContent = (req,res) => {
-
+    try{
+        const course = contentModel.findByIdAndDelete(req.params.id)
+        if(!course) res.status(404).send("Not Found")
+    }
+    catch(e){
+        res.status(500).send(e);
+    }
 }
 

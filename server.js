@@ -2,6 +2,12 @@ const fs = require('fs')
 const path = require('path')
 const express = require('express')
 const mongoose = require('mongoose');
+const cors = require("cors")
+const bodyParser = require('body-parser')
+
+
+
+
 
 const isTest = process.env.NODE_ENV === 'test' || !!process.env.VITE_TEST_BUILD
 
@@ -19,7 +25,7 @@ async function createServer(
   const app = express()
   
 
-  var config = require('./config/' + 'dev' + '.config')
+  var config = require('./configs/' + 'dev' + '.config')
   mongoose.connect(config.database, { useNewUrlParser: true, useUnifiedTopology: true });
   
   const db = mongoose.connection;
@@ -48,6 +54,7 @@ async function createServer(
     })
     // use vite's connect instance as middleware
     app.use(vite.middlewares)
+    app.use(bodyParser.json())
   } else {
     app.use(require('compression')())
     app.use(
@@ -57,7 +64,11 @@ async function createServer(
     )
   }
 
+  
+
   await require('./routes/index')(app);
+  app.use(cors())
+  
 
   app.use('*', async (req, res) => {
     try {
