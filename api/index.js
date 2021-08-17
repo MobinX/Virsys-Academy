@@ -11,8 +11,22 @@ const port = 3000
 const log = require("./renderer/exm")
 const lof2 = require("../utilsa/ern")
 const render = require("./renderer/entry-server").render
-const indexProd = fs.readFileSync(resolve('./renderer/index.html'), 'utf-8')
-let template = indexProd
+
+let template = `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+    <script type="module" crossorigin src="/assets/index.493e5aec.js"></script>
+    <link rel="modulepreload" href="/assets/vendor.2d9ed0d6.js">
+  </head>
+  <body>
+    <div id="app"><!--app-html--></div>
+    
+  </body>
+</html>
+`
 
 
 console.log(render)
