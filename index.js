@@ -122,8 +122,7 @@ createServer().then(({ app }) =>
 
 
 
-// for test use
-exports.createServer = createServer
+
 
 // const express = require('express');
 // console.log("runing server");
