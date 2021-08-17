@@ -113,8 +113,8 @@ app.get('/', (req, res) => res.send('Home Page Route'));
 
 
 createServer().then(({ app }) =>
-  const port = process.env.PORT || 3000;                  
-  app.listen(port, () => {
+                 
+  app.listen((process.env.PORT || 3000), () => {
     console.log('http://localhost:3000')
 
   }))
