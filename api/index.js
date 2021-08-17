@@ -38,6 +38,7 @@ app.use(
 )
 
 app.get('/', (req, res) => {
+  const url = req.originalUrl;
   const context = {}
   const appHtml = render(url, context)
 
