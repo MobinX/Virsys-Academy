@@ -2,6 +2,9 @@ const fs = require('fs')
 const path = require('path')
 const express = require('express')
 
+
+const resolve = (p) => path.resolve(__dirname, p)
+
 const app = express()
 const port = 3000
 
@@ -11,7 +14,6 @@ const render = require("./renderer/entry-server").render
 const indexProd = fs.readFileSync(resolve('./renderer/index.html'), 'utf-8')
 let template = indexProd
 
-const resolve = (p) => path.resolve(__dirname, p)
 
 console.log(render)
 app.use(require('compression')())
