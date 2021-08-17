@@ -5,7 +5,7 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-const log = require("./renderer/exm)
+const log = require("./renderer/exm")
 log("ki")
 
 app.get('/', (req, res) => {
