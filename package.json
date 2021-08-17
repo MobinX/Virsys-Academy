@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev-b": "node server",
-    "build": "yarn build:client && yarn build:server && node scripts/move-dist.js",
+    "build": "yarn build:client && yarn build:server && sh scripts/move-dist.sh",
     "build:client": "vite build --outDir dist/client --ssrManifest",
     "build:server": "vite build --ssr client/src/entry-server.jsx --outDir dist/server",
     "s": "cross-env NODE_ENV=production node server",
