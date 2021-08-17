@@ -1,1 +1,1 @@
-module.exports = ( log) => console.log(log);
+module.exports = ( log) => console.log("kkkkk"+log);
