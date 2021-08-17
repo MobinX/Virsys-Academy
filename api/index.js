@@ -7,6 +7,8 @@ const port = 3000
 
 const log = require("./renderer/exm")
 const lof2 = require("../utilsa/ern")
+const render = require("../dist/server/entry-server")
+console.log(render)
 
 app.get('/', (req, res) => {
   lof2("ki")
