@@ -70,7 +70,7 @@ async function createServer(
   app.use(cors())
   
 
-  app.use('*', async (req, res) => {
+  app.use('/*', async (req, res) => {
     try {
       const url = req.originalUrl
 
