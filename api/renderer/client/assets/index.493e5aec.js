@@ -1,0 +1,1 @@
+import{R as e,a as t,B as l}from"./vendor.2d9ed0d6.js";function n(){return e.createElement(e.Fragment,null,e.createElement("div",null," Hello World"))}t.hydrate(React.createElement(l,null,React.createElement(n,null)),document.getElementById("app"));
