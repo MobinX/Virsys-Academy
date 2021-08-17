@@ -6,7 +6,7 @@ const cors = require("cors")
 const bodyParser = require('body-parser')
 
 
-
+console.log(process.version);
 
 
 const isTest = process.env.NODE_ENV === 'test' || !!process.env.VITE_TEST_BUILD
