@@ -1,12 +1,14 @@
 {
-	"version": 2,
-	
-	
 
-	"routes": [
-		{
-			"src": "/(.*)",
-			"dest": "/"
-		}
-	]
+  "functions": {
+    "api/index.js": {
+      
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/api/index.js"
+    }
+  ]
 }
