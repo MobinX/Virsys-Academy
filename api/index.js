@@ -6,9 +6,11 @@ const app = express()
 const port = 3000
 
 const log = require("./renderer/exm")
-log("ki")
+const lof2 = require("../utilsa/ern")
 
 app.get('/', (req, res) => {
+  lof2("ki")
+
   res.setHeader('Content-Type', 'text/html');
   res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
   res.send('Hello World!')
@@ -22,7 +24,3 @@ app.listen(port, () => {
 
 
 module.exports = app;
-<<<<<<< HEAD
-
-=======
->>>>>>> f095e8ce886414c94a46174ccd7d24141518adb4
