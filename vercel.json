@@ -1,0 +1,15 @@
+{
+  
+"functions": {
+    "api/index.js": {
+      "includeFiles": "renderer/**"
+    }
+  },
+  
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/api/index.js"
+    }
+  ]
+}

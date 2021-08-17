@@ -6,7 +6,7 @@ const cors = require("cors")
 const bodyParser = require('body-parser')
 
 
-
+console.log(process.version);
 
 
 const isTest = process.env.NODE_ENV === 'test' || !!process.env.VITE_TEST_BUILD
@@ -66,7 +66,7 @@ async function createServer(
 
   
 
-  await require('./routes/index')(app);
+//   await require('./routes/index')(app);
   app.use(cors())
   
 
@@ -103,19 +103,41 @@ async function createServer(
       res.status(500).end(e.stack)
     }
   })
+    
+    
+app.get('/', (req, res) => res.send('Home Page Route'));
 
-  return { app, vite }
+
+  return { app }
 }
 
 
 createServer().then(({ app }) =>
-  app.listen(3000, () => {
+                 
+  app.listen((process.env.PORT || 3000), () => {
     console.log('http://localhost:3000')
 
   }))
 
-console.log("runing server");
 
 
-// for test use
-exports.createServer = createServer
+
+
+
+// const express = require('express');
+// console.log("runing server");
+// const app = express();
+
+// app.get('/', (req, res) => res.send('Home Page Route'));
+
+// app.get('/about', (req, res) => res.send('About Page Route'));
+
+// app.get('/portfolio', (req, res) => res.send('Portfolio Page Route'));
+
+// app.get('/contact', (req, res) => res.send('Contact Page Route'));
+
+// const port = process.env.PORT || 3000;
+
+// app.listen(port, () => console.log(`Server running on ${port}, http://localhost:${port}`));
+
+
