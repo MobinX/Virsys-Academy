@@ -8,8 +8,7 @@ const resolve = (p) => path.resolve(__dirname, p)
 const app = express()
 const port = 3000
 
-const log = require("./renderer/exm")
-const lof2 = require("../utilsa/ern")
+
 const render = require("../dist/server/entry-server").render
 
 let template = `<!DOCTYPE html>
