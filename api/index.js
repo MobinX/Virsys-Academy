@@ -10,7 +10,7 @@ const port = 3000
 
 const log = require("./renderer/exm")
 const lof2 = require("../utilsa/ern")
-const render = require("./renderer/entry-server").render
+const render = require("../dist/server/entry-server").render
 
 let template = `<!DOCTYPE html>
 <html lang="en">
@@ -32,7 +32,7 @@ let template = `<!DOCTYPE html>
 console.log(render)
 app.use(require('compression')())
 app.use(
-  require('serve-static')(resolve('renderer/client'), {
+  require('serve-static')(resolve('../dist/client'), {
     index: false
   })
 )
