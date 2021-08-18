@@ -3,6 +3,8 @@ const path = require('path')
 const express = require('express')
 const mongoose = require('mongoose');
 const cors = require("cors")
+const bodyParser = require('body-parser')
+
 
 const resolve = (p) => path.resolve(__dirname, p)
 
@@ -17,6 +19,7 @@ const db = mongoose.connection;
 //Bind connection to error event (to get notification of connection errors)
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 app.use(cors())
+app.use(bodyParser.json())
 
 const render = require("../dist/server/entry-server").render
 
