@@ -39,7 +39,7 @@ let template = `<!DOCTYPE html>
 
 console.log(render)
 
-await require('./routes/index')(app);
+require('./routes/index')(app);
 
 app.use(require('compression')())
 app.use(
