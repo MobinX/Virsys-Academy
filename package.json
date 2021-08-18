@@ -5,9 +5,9 @@
   "scripts": {
     "dev-b": "node server",
     "build":"echo 'building' ",
-    "vercel-build": "yarn build:client && yarn build:server && sh scripts/move-dist.sh",
-    "build:client": "vite build --outDir dist/client --ssrManifest && vite build --outDir api/dist/client --ssrManifest",
-    "build:server": "vite build --ssr client/src/entry-server.jsx --outDir dist/server && vite build --ssr client/src/entry-server.jsx --outDir api/dist/server",
+    "vercel-build": "yarn build:client && yarn build:server",
+    "build:client": "vite build --outDir dist/client --ssrManifest ",
+    "build:server": "vite build --ssr client/src/entry-server.jsx --outDir dist/server ",
     "s": "cross-env NODE_ENV=production node server",
     "serve": "node server",
     "debug": "node --inspect-brk server"
