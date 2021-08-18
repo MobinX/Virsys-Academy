@@ -6,9 +6,9 @@ const {ObjectId} = require("mongodb")
 exports.getCourseList = async (req,res) => {
 
     try{
-        const courses = await courseModel.find({}).exec((err,obj)=>{
-            res.send(JSON.stringify(obj))
-        })
+        const courses = await courseModel.find({})
+            res.send(JSON.stringify(courses))
+        
         
     }                
     catch(e){

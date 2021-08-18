@@ -25,7 +25,7 @@ async function createServer(
   const app = express()
   
 
-  var config = require('./configs/' + 'dev' + '.config')
+  var config = require('./api/configs/' + 'dev' + '.config')
   mongoose.connect(config.database, { useNewUrlParser: true, useUnifiedTopology: true });
   
   const db = mongoose.connection;
@@ -66,7 +66,7 @@ async function createServer(
 
   
 
-//   await require('./routes/index')(app);
+  await require('./api/routes/index')(app);
   app.use(cors())
   
 

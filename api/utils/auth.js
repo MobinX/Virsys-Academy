@@ -1,2 +1,2 @@
-export auth = {};
+exports.auth = {};
 auth.isUser = true;

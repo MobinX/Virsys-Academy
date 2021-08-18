@@ -8,6 +8,13 @@ const resolve = (p) => path.resolve(__dirname, p)
 const app = express()
 const port = 3000
 
+var config = require('./api/configs/' + 'dev' + '.config')
+mongoose.connect(config.database, { useNewUrlParser: true, useUnifiedTopology: true });
+
+const db = mongoose.connection;
+
+//Bind connection to error event (to get notification of connection errors)
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 const render = require("../dist/server/entry-server").render
 
@@ -29,6 +36,9 @@ let template = `<!DOCTYPE html>
 
 
 console.log(render)
+
+await require('./routes/index')(app);
+
 app.use(require('compression')())
 app.use(
   require('serve-static')(resolve('../dist/client'), {
@@ -51,7 +61,7 @@ app.get('/', (req, res) => {
   res.setHeader('Cache-Control', 's-max-age=1, stale-while-revalidate');
   res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
 
-  
+
 })
 
 app.listen(port, () => {
