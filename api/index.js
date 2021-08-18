@@ -9,7 +9,7 @@ const resolve = (p) => path.resolve(__dirname, p)
 const app = express()
 const port = 3000
 
-var config = require('./api/configs/' + 'dev' + '.config')
+var config = require('./configs/' + 'dev' + '.config')
 mongoose.connect(config.database, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
