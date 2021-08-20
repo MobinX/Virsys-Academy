@@ -62,7 +62,7 @@ exports.deleteCourse = async (req,res) => {
 
         console.log(course)
         if(!course) res.status(404).send("Not Found")
-        res.status(200).json(courses);
+        res.status(200).json(course);
 
 
         
