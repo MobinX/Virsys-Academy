@@ -61,7 +61,7 @@ exports.deleteCourse = async (req,res) => {
         const course = await courseModel.findByIdAndRemove(req.params.id)
 
         console.log(course)
-        if(!course) res.status(404).send("Not Found")
+//         if(!course) res.status(404).send("Not Found")
         res.status(200).json(course);
 
 
