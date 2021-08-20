@@ -7,7 +7,7 @@ exports.getCourseList = async (req,res) => {
 
     try{
         const courses = await courseModel.find({})
-            res.send(JSON.stringify(courses))
+            res.json(courses)
         
         
     }                
@@ -19,7 +19,7 @@ exports.getCourseList = async (req,res) => {
 exports.getCourseById = async (req,res) =>{
     try{
         const courses = await courseModel.findById(req.params.id)
-        res.send(JSON.stringify(courses))
+        res.json(courses)
     }
     catch(e){
         res.status(500).send(e);
@@ -35,7 +35,7 @@ exports.addCourse = async (req,res) => {
     
     try{
         await course.save();
-        res.send(JSON.stringify(course))
+        res.json(course)
     }
     catch(e){
         res.status(500).send(e);
@@ -45,10 +45,12 @@ exports.addCourse = async (req,res) => {
 
 exports.updateCourse = async (req,res) => { 
     try{
-        await courseModel.findByIdAndUpdate(req.params.id,req.body)
-        await courseModel.save()     
+        const courses = await courseModel.findByIdAndUpdate(req.params.id,req.body,{new: true})
+        
+        res.status(200).json(courses);     
     }
     catch(e){
+        console.log(e)
         res.status(500).send(e);
     }
 
@@ -56,10 +58,17 @@ exports.updateCourse = async (req,res) => {
 
 exports.deleteCourse = async (req,res) => {
     try{
-        const course = courseModel.findByIdAndDelete(req.params.id)
+        const course = await courseModel.findByIdAndRemove(req.params.id)
+
+        console.log(course)
         if(!course) res.status(404).send("Not Found")
+        res.status(200).json(courses);
+
+
+        
     }
     catch(e){
+        console.log(e)
         res.status(500).send(e);
     }
 
@@ -78,7 +87,7 @@ exports.addContent = async (req,res) => {
     const content = new contentModel(req.body);
     try{
         await content.save();
-        res.send(JSON.stringify(content))
+        res.json(content)
     }
     catch(e){
         res.status(500).send(e);
@@ -89,7 +98,7 @@ exports.addContent = async (req,res) => {
 exports.getContents = async (req,res) => {
     try{
         const contents = await contentModel.find({})
-        res.send(JSON.stringify(contents));
+        res.json(contents)
     }
     catch(e){
         res.status(500).send(e)
@@ -99,8 +108,9 @@ exports.getContents = async (req,res) => {
 exports.updateContent = async (req,res) => {
 
     try{
-        await contentModel.findByIdAndUpdate(req.params.id,req.body)
-        await contentModel.save()     
+        const contents = await contentModel.findByIdAndUpdate(req.params.id,req.body,{new: true})
+        
+        res.status(200).json(contents);       
     }
     catch(e){
         res.status(500).send(e);
@@ -111,8 +121,11 @@ exports.updateContent = async (req,res) => {
 exports.deleteContent = async (req,res) => {
 
     try{
-        const course = contentModel.findByIdAndDelete(req.params.id)
-        if(!course) res.status(404).send("Not Found")
+        const content = await contentModel.findByIdAndRemove(req.params.id)
+
+        console.log(content)
+        if(!content) res.status(404).send("Not Found")
+        res.status(200).json(content);
     }
     catch(e){
         res.status(500).send(e);

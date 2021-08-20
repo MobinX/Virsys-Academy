@@ -4,7 +4,7 @@ exports.getUserList = async (req,res) =>{
   
     try{
         const user = await userModel.find({})
-        res.send(JSON.stringify(user))
+        res.json(user)
     }
     catch(e){
         res.status(500).send(e)
@@ -14,7 +14,7 @@ exports.getUserById = async (req,res) =>{
   
     try{
         const user = await userModel.findById(req.params.id)
-        res.send(JSON.stringify(user))
+        res.json(user)
     }
     catch(e){
         res.status(500).send(e)
@@ -25,7 +25,7 @@ exports.addUser = async (req,res) =>{
     try{
         const user = new userModel(req.body)
         await user.save()
-        res.send(JSON.stringify(user))
+        res.json(user)
     }
     catch(e){
         res.status(500).send(e)
@@ -34,9 +34,8 @@ exports.addUser = async (req,res) =>{
 exports.updateUser = async (req,res) =>{
   
     try{
-        await userModel.findByIdAndUpdate(req.params.id,req.body)
-        await userModel.save()
-        res.send("")
+        const user = await userModel.findByIdAndUpdate(req.params.id,req.body,{new: true})
+        res.json(user)
     }
     catch(e){
         res.status(500).send(e)
@@ -45,9 +44,8 @@ exports.updateUser = async (req,res) =>{
 exports.deleteUser = async (req,res) =>{
   
     try{
-        await userModel.findByIdAndDelete(req.params.id,req.body)
-        await userModel.save()
-        res.send(JSON.stringify("user"))
+        const user = await userModel.findByIdAndDelete(req.params.id)        
+        res.json(user)
     }
     catch(e){
         res.status(500).send(e)
