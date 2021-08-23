@@ -4,6 +4,7 @@ const express = require('express')
 const mongoose = require('mongoose');
 const cors = require("cors")
 const bodyParser = require('body-parser')
+const cookieSession = require('cookie-session')
 
 
 console.log(process.version);
@@ -23,7 +24,33 @@ async function createServer(
     : ''
 
   const app = express()
+
+
+  app.set('trust proxy', 1) // trust first proxy
+ 
+  app.use(cookieSession({
+    name: 'session',
+    keys: ['key1', 'key2']
+  }))
+
+
+
+
+  app.use(function (req, res, next) {
+    console.log('Time:', Date.now())
+    req.session.views = (req.session.views || 0) + 1
+    console.log(req.session.views)
+    console.log(req.originalUrl)
+    next()
+  })
+
   
+  app.get("/ses", (req,res)=>{
+
+    res.send("hoo"+req.session.views+"ll+")
+
+
+  })
 
   var config = require('./api/configs/' + 'dev' + '.config')
   mongoose.connect(config.database, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -114,7 +141,7 @@ app.get('/', (req, res) => res.send('Home Page Route'));
 
 createServer().then(({ app }) =>
                  
-  app.listen((process.env.PORT || 3000), () => {
+  app.listen((process.env.PORT || 4000), () => {
     console.log('http://localhost:3000')
 
   }))
